@@ -305,7 +305,7 @@ public class EconomyUserDao {
                     .and()
                     .lt("amount", ShiroEconomy.getApi().getPlugin()
                             .getConfig()
-                            .getDouble("transaction.huge-minimum"))
+                            .getDouble("huge-transaction.minimum"))
                     .prepare());
         } catch (SQLException e) {
             throw new RuntimeException("Error while getting user");
@@ -326,7 +326,7 @@ public class EconomyUserDao {
                     .and()
                     .ge("amount", ShiroEconomy.getApi().getPlugin()
                             .getConfig()
-                            .getDouble("transaction.huge-minimum"))
+                            .getDouble("huge-transaction.minimum"))
                     .prepare());
         } catch (SQLException e) {
             throw new RuntimeException("Error while getting user");
