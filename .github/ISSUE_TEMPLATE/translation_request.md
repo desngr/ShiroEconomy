@@ -1,6 +1,6 @@
 ---
 name: Translation request
-about: Suggest an translation for this project
+about: Suggest a translation for this project
 title: "[LANG]"
 labels: ''
 assignees: desngr
