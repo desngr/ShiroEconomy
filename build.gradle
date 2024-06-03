@@ -1,0 +1,97 @@
+plugins {
+    id 'java'
+    id 'net.minecrell.plugin-yml.bukkit' version '0.6.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+def javaVersion = JavaVersion.VERSION_1_8.getMajorVersion().toInteger()
+
+group = 'me.desngr'
+version = "1.0.0"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(javaVersion)
+        vendor = JvmVendorSpec.ADOPTIUM
+    }
+}
+
+repositories {
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
+    maven { url 'https://jitpack.io' }
+    maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
+
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'net.luckperms:api:5.4'
+    compileOnly 'me.clip:placeholderapi:2.11.6'
+    compileOnly "com.github.MilkBowl:VaultAPI:1.7"
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    bukkitLibrary 'com.google.code.gson:gson:2.10.1'
+
+    implementation 'io.github.rysefoxx.inventory:RyseInventory-Plugin:1.6.5'
+    implementation 'com.zaxxer:HikariCP:4.0.3'
+    implementation 'com.j256.ormlite:ormlite-jdbc:6.1'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'com.github.unldenis.holoeasy:holoeasy-core:3.4.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.21'
+    implementation "net.kyori:adventure-api:4.17.0"
+    implementation 'org.bstats:bstats-bukkit:3.0.2'
+}
+
+bukkit {
+    main = 'me.desngr.ShiroEconomy'
+    apiVersion = '1.13'
+    authors = ['desngr']
+    depend = ['Vault']
+    softDepend = ['LuckPerms', 'ProtocolLib', 'PlaceholderAPI']
+
+    commands {
+        pay {
+
+        }
+        eco {
+
+        }
+        balance {
+
+        }
+        money {
+
+        }
+        holotop {
+
+        }
+    }
+}
+
+shadowJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    relocate 'io.github.rysefoxx.inventory.plugin', 'me.desngr.api.inventory'
+    relocate 'org.bstats', 'me.desngr.api.bstats'
+
+    archiveFileName = "${project.name}-${project.version}.jar"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+
+    options.encoding = 'UTF-8'
+}

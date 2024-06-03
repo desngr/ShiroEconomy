@@ -1,0 +1,103 @@
+errors:
+  no-permission:
+    default: "&cУ вас недостаточно прав!"
+
+  unknown-command: "&cНеизвестная команда! Список команд /eco help"
+holotop:
+  empty: "Вы ещё не создавали холо-топов, поэтому список пуст!"
+  list-title: "&f&lShiro&e&lEconomy &8| &eСписок холо-топов:"
+  list-line: "&7 $INDEX. » &f$NAME"
+  deleted: "&aВы успешно удалили холо-топ под названием &f“$NAME”&a!"
+  exists: '&cХоло-топ "&a$NAME&f" &cуже существует!'
+  not-exists: '&cХоло-топ "&a$NAME&f" &cне существует!'
+  usage:
+    set: '&eИспользуйте: /holotop set “название”'
+    delete: '&eИспользуйте: /holotop delete “название”'
+  set: '&aВы установили холо-топ под названием &f“&e$NAME&f”'
+  top-title: "&f&lShiro&e&lEconomy &8|  &aТоп 10 игроков по балансу:"
+  top-line: "$INDEX. $PLAYER > $BALANCE"
+
+top-inventory:
+  title: "&aТоп 10 по балансу монет"
+  display-line: "$INDEX. $PLAYER"
+  lore-line: "Баланс: $AMOUNT"
+
+pay:
+  success-from: "&aВы перевели игроку &e$TARGET &aсумму: &e$MONEY &aмонет"
+  success-to: "&aИгрок &e$TARGET &aперевел Вам сумму: &e$MONEY &aмонет"
+  check-title: "&f&lShiro&e&lEconomy &8| &eПереводы игрока $PLAYER &f(Стр. &c$PAGE&f/&a$PAGES)&e:"
+  check-line-send: "$INDEX. $PLAYER перевел игроку $TARGET $AMOUNT монет &7$DATE"
+  check-line-receive: "$INDEX. $PLAYER получил от игрока $TARGET $AMOUNT монет &7$DATE"
+  check-empty: "&cУ игрока $PLAYER не обнаружены переводы!"
+  checkhuge-title: "&f&lShiro&e&lEconomy &8| &cКрупные переводы игрока $PLAYER &f(Стр. &c$PAGE&f/&a$PAGES)&e"
+  checkhuge-line-send: "&8$INDEX. &cКрупный перевод &8| &c$PLAYER перевел игроку $TARGET $AMOUNT монет &8$DATE"
+  checkhuge-line-receive: "&8$INDEX. &cКрупный перевод &8| &c$PLAYER получил от игрока $TARGET $AMOUNT монет &8$DATE"
+  checkhuge-empty: "&aУ игрока $PLAYER не обнаружены крупные переводы!"
+  self: "&cНельзя переводить монеты самому себе!"
+  usage:
+    money: '&eИспользуйте: /pay money “ник” “сумма”'
+    check: '&eИспользуйте: /pay check “ник” “страница”'
+    checkhuge: '&eИспользуйте: /pay checkhuge “ник” “страница”'
+
+  huge-transaction: |
+    &f&lShiro&e&lEconomy &8| &cКрупный Перевод
+    &fИгрок &c$PLAYER &fперевел игроку &c$TARGET &fсумму: &a$AMOUNT &fмонет
+
+
+balance:
+  check: |
+    &f&lShiro&e&lEconomy &8| &aБаланс игрока &e$PLAYER:
+    &7» &2Монеты: &e$AMOUNT
+  info: |
+    &aВаш баланс:
+    &7» &aМонеты: &e$AMOUNT
+  usage:
+    check: '&eИспользуйте: /balance check “ник”'
+
+money:
+  not-enough: |
+    &cУ игрока &e$PLAYER &cмало монет, чтобы забрать их у него.
+    &fЕго баланс: $AMOUNT монет
+  wrong-format: "&cНеверно указана сумма!"
+  balance-lack: "&cУ вас недостаточно средств! Ваш баланс &a$AMOUNT &cмонет"
+  not-exists: "&aИгрока &e$PLAYER &fнет в базе данных!"
+  add-from: "&aВы успешно зачислили игроку &e$PLAYER &eсумму: &e$AMOUNT монет"
+  add-to: "&aВам зачислено: &e$AMOUNT монет"
+  set-from: "&aВы успешно установили игроку &e$PLAYER &aсумму: &a$AMOUNT монет"
+  set-to: "&aВам установлен баланс: &e$AMOUNT монет"
+  took-from: "&aВы успешно забрали у игрока &e$PLAYER &aсумму: &e$AMOUNT монет"
+  took-to: "&cУ вас забрали сумму: &e$AMOUNT монет"
+  reset-from: "&aВы успешно обнулили баланс монет у игрока &e$PLAYER"
+  reset-to: "&cВам обнулили баланс монет!"
+  usage:
+    add: '&eИспользуйте: /money add “ник” “сумма”'
+    set: '&eИспользуйте: /money set “ник” “сумма”'
+    take: '&eИспользуйте: /money take “ник” “сумма”'
+    reset: '&eИспользуйте: /money reset “ник” “сумма”'
+
+eco:
+  reload: "&aПлагин был успешно перезагружен!"
+  reload-error: "&cВозникла ошибка! Проверьте консоль"
+  info: |
+    &aВерсия плагина: &e$VERSION
+    &fСоединение с БД: $IS_CONNECTED
+    &fКол-во активных соединений с БД: &a$CONNECTIONS
+    &fКол-во активных серверов подключенных к той-же БД: &a$ALL_CONNECTIONS
+  help: |
+    &f&lShiro&e&lEconomy &8| &fПомощь по командам:
+    &7» &a/pay money “ник” “сумма” &f- отправить игроку монеты
+    &7» &a/balance &f- посмотреть свой баланс
+    &7» &a/balance top &f- посмотреть топ игроков по балансу (топ 10)
+  help-admin: |
+    &f&lShiro&e&lEconomy &8| &fДоступные админ-команды:
+    &7» &a/money set “ник” “сумма” &f- установить сумму монет игроку
+    &7» &a/pay check “ник” &f- проверить переводы игрока
+    &7» &a/money add “ник” “сумма” &f- выдать монеты игроку
+    &7» &a/balance check “ник” &f- узнать баланс пользователя
+    &7» &a/money take “ник” “сумма” &f- забрать монеты у игрока
+    &7» &a/money reset “ник” &f- обнулить баланс монет игроку
+    &7» &a/holotop set “название” &f- установить холо-топ
+    &7» &a/holotop delete “название” &f- удалить холо-топ
+    &7» &a/holotop list &f- посмотреть список холо-топов
+    &7» &a/eco reload &f- перезагрузить плагин
+    &7» &a/eco info &f- посмотреть сведения о плагине

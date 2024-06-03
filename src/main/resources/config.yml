@@ -1,0 +1,15 @@
+debug: false
+locale: "" # Example: "en" - English
+
+database:
+  url: ""
+  user: ""
+  password: ""
+
+# Optional. LuckPerms is required too
+huge-transaction:
+  enabled: true
+  minimum: 250000 # Minimum amount for huge transaction announcement
+  groups: # LuckPerms groups
+    - "personnel"
+    - "staff"

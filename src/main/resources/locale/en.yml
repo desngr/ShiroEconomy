@@ -1,0 +1,103 @@
+errors:
+  no-permission:
+    default: "&cNo permission to use this!"
+
+  unknown-command: "&cUnknown command! See available commands /eco help"
+holotop:
+  empty: "You didn't create any!"
+  list-title: "&f&lShiro&e&lEconomy &8| &eList of holo-tops:"
+  list-line: "&7 $INDEX. » &f$NAME"
+  deleted: "&f“$NAME”&a holo-top was successfully deleted!"
+  exists: '&cHolo-top named "&a$NAME&f" &calready exists!'
+  not-exists: '&cHolo-top "&a$NAME&f" &cnot exists!'
+  usage:
+    set: '&eUse: /holotop set “name”'
+    delete: '&eUse: /holotop delete “name”'
+  set: '&aYou created a holo-top named &f“&e$NAME&f”'
+  top-title: "&f&lShiro&e&lEconomy &8| &aTop 10 balance:"
+  top-line: "$INDEX. $PLAYER > $BALANCE"
+
+top-inventory:
+  title: "&aTop 10 balance"
+  display-line: "$INDEX. $PLAYER"
+  lore-line: "Balance: $AMOUNT"
+
+pay:
+  success-from: "&aYou paid &e$TARGET &athe amount of: &e$MONEY &acoins"
+  success-to: "&aPlayer &e$TARGET &apaid you: &e$MONEY &acoins"
+  check-title: "&f&lShiro&e&lEconomy &8| &eTransactions of $PLAYER &f(Page &c$PAGE&f/&a$PAGES)&e:"
+  check-line-send: "$INDEX. $PLAYER has transferred $TARGET with amount of $AMOUNT coins &7$DATE"
+  check-line-receive: "$INDEX. $PLAYER has received from $TARGET an amount of $AMOUNT coins &7$DATE"
+  check-empty: "&c$PLAYER hasn't done any transactions yet!"
+  checkhuge-title: "&f&lShiro&e&lEconomy &8| &cHuge transactions of player $PLAYER &f(Page &c$PAGE&f/&a$PAGES)&e"
+  checkhuge-line-send: "&8$INDEX. &cHuge transaction &8| &c$PLAYER has transferred $TARGET with amount of $AMOUNT coins &8DATE"
+  checkhuge-line-receive: "&8$INDEX. &cHuge transaction &8| &c$PLAYER has received from $TARGET an amount of $AMOUNT coins &8$DATE"
+  checkhuge-empty: "&a$PLAYER hasn't done any huge transactions yet!"
+  self: "&cYou can't transact yourself!"
+  usage:
+    money: '&eUse: /pay money “nickname” “amount”'
+    check: '&eUse: /pay check “nickname” “page”'
+    checkhuge: '&eUse: /pay checkhuge “nichname” “page”'
+
+  huge-transaction: |
+    &f&lShiro&e&lEconomy &8| &cHuge Transaction
+    &fPlayer &c$PLAYER &fhas transferred &c$TARGET &fwith amount of: &a$AMOUNT &fcoins
+
+
+balance:
+  check: |
+    &f&lShiro&e&lEconomy &8| &aBalance of &e$PLAYER:
+    &7» &2Coins: &e$AMOUNT
+  info: |
+    &aYour balance:
+    &7» &aCoins: &e$AMOUNT
+  usage:
+    check: '&eUse: /balance check “nickname”'
+
+money:
+  not-enough: |
+    &cPlayer &e$PLAYER &cis too broke!
+    &fHis balance: $AMOUNT coins
+  wrong-format: "&cThe amount is incorrect!"
+  balance-lack: "&cУYou don't have enough money! Your balance is &a$AMOUNT &ccoins"
+  not-exists: "&aPlayer &e$PLAYER &fis absent in database!"
+  add-from: "&aYou successfully deposited &e$PLAYER &ewith an amount of: &e$AMOUNT coins"
+  add-to: "&aYou were deposited with: &e$AMOUNT coins"
+  set-from: "&aYou successfully set &e$PLAYER &awith an amount of: &a$AMOUNT coins"
+  set-to: "&aYour balance was set to: &e$AMOUNT coins"
+  took-from: "&aYou successfully took from &e$PLAYER &aan amount of: &e$AMOUNT coins"
+  took-to: "&cYour balance was withdrawn by: &e$AMOUNT coins"
+  reset-from: "&aYou successfully reset balance of &e$PLAYER"
+  reset-to: "&cYour balance was reset!"
+  usage:
+    add: '&eUse: /money add “nickname” “amount”'
+    set: '&eUse: /money set “nickname” “amount”'
+    take: '&eUse: /money take “nickname” “amount”'
+    reset: '&eUse: /money reset “nickname” “amount”'
+
+eco:
+  reload: "&aPlugin was successfully reloaded!"
+  reload-error: "&cAn error occurred! Please check your console"
+  info: |
+    &aVersion: &e$VERSION
+    &fConnection with DB: $IS_CONNECTED
+    &fAmount of connections: &a$CONNECTIONS
+    &fAmount of unique connections: &a$ALL_CONNECTIONS
+  help: |
+    &f&lShiro&e&lEconomy &8| &fHelp with commands:
+    &7» &a/pay money “nickname” “amount” &f- send money to player
+    &7» &a/balance &f- check you balance
+    &7» &a/balance top &f- see top of players by balance (top 10)
+  help-admin: |
+    &f&lShiro&e&lEconomy &8| &fHelp with admin commands:
+    &7» &a/money set “nickname” “amount” &f- set amount of money to a player
+    &7» &a/pay check “nickname” &f- check player transactions
+    &7» &a/money add “nickname” “amount” &f- give money to a player
+    &7» &a/balance check “nickname” &f- check player's balance
+    &7» &a/money take “nickname” “amount” &f- take money from a player
+    &7» &a/money reset “nickname” &f- reset balance of a player
+    &7» &a/holotop set “name” &f- create holo-top
+    &7» &a/holotop delete “name” &f- remove holo-top
+    &7» &a/holotop list &f- see a list of holo-tops
+    &7» &a/eco reload &f- reload plugin
+    &7» &a/eco info &f- see some info about plugin
