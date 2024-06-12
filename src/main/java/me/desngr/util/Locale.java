@@ -11,12 +11,14 @@ public class Locale {
 
     @Getter
     private final String languageCode;
+    @Getter
+    private final File localeFile;
     private final YamlConfiguration localeYaml;
 
     public Locale(String languageCode) {
         File localeDir = new File(ShiroEconomy.getApi().getPlugin()
                 .getDataFolder(), "locale");
-        File localeFile = new File(localeDir, languageCode + ".yml");
+        this.localeFile = new File(localeDir, languageCode + ".yml");
 
         if (!exists(languageCode))
             throw new NullPointerException(languageCode + " language code not exists!");

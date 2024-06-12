@@ -7,7 +7,7 @@ plugins {
 def javaVersion = JavaVersion.VERSION_1_8.getMajorVersion().toInteger()
 
 group = 'me.desngr'
-version = "1.0.0"
+version = "1.0.1"
 
 java {
     toolchain {
@@ -39,7 +39,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.26'
     compileOnly 'net.luckperms:api:5.4'
     compileOnly 'me.clip:placeholderapi:2.11.6'
-    compileOnly "com.github.MilkBowl:VaultAPI:1.7"
+    compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
     bukkitLibrary 'com.google.code.gson:gson:2.10.1'
@@ -50,8 +50,9 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33'
     implementation 'com.github.unldenis.holoeasy:holoeasy-core:3.4.0'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.21'
-    implementation "net.kyori:adventure-api:4.17.0"
+    implementation 'net.kyori:adventure-api:4.17.0'
     implementation 'org.bstats:bstats-bukkit:3.0.2'
+    implementation 'com.tchristofferson:ConfigUpdater:2.1-SNAPSHOT'
 }
 
 bukkit {

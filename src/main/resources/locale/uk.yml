@@ -60,7 +60,7 @@ money:
     &fЙого баланс: $AMOUNT монет
   wrong-format: "&cСума вказана невірно!"
   balance-lack: "&cУ вас недостатньо коштів! Ваш баланс &a$AMOUNT &cмонет"
-  not-exists: "&aГравця &e$PLAYER &fнемає у базі данних!"
+  not-exists: "&aГравця &e$PLAYER &fнемає у базі даних!"
   add-from: "&aВи успішно зачислили гравцю &e$PLAYER &eсуму: &e$AMOUNT монет"
   add-to: "&aВам зачислено: &e$AMOUNT монет"
   set-from: "&aВи успішно встановили гравцю &e$PLAYER &aсуму: &a$AMOUNT монет"
@@ -73,10 +73,10 @@ money:
     add: '&eВикористовуйте: /money add “нік” “сума”'
     set: '&eВикористовуйте: /money set “нік” “сума”'
     take: '&eВикористовуйте: /money take “нік” “сума”'
-    reset: '&eВикористовуйте: /money reset “нік” “сума”'
+    reset: '&eВикористовуйте: /money reset “нік”'
 
 eco:
-  reload: "&aПлагин успішно перезавантажений!"
+  reload: "&aПлагін успішно перезавантажений!"
   reload-error: "&cСталася помилка! Перевірте консоль"
   info: |
     &aВерсія плагіна: &e$VERSION

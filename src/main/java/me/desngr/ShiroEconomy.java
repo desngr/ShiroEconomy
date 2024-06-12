@@ -1,5 +1,6 @@
 package me.desngr;
 
+import com.tchristofferson.configupdater.ConfigUpdater;
 import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.InventoryManager;
@@ -32,6 +33,7 @@ import me.desngr.util.builder.ItemBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,7 +42,7 @@ public class ShiroEconomy extends JavaPlugin implements ShiroEconomyApi {
     @Getter
     private static ShiroEconomyApi api;
 
-    public static String PREFIX = "&f&lShiro&e&lEconomy";
+    public static String PREFIX = "&f&lShiro&e&lEconomy&r";
 
     private Locale locale;
     private YamlConfiguration holograms;
@@ -71,14 +73,35 @@ public class ShiroEconomy extends JavaPlugin implements ShiroEconomyApi {
             this.locale = new Locale(getConfig().getString("locale"));
         }
 
+        try {
+            ConfigUpdater.update(this,
+                    "locale/" + locale.getLanguageCode() + ".yml",
+                    locale.getLocaleFile(),
+                    Collections.emptyList());
+            ConfigUpdater.update(this,
+                    "config.yml",
+                    new File(getDataFolder(), "config.yml"),
+                    Collections.emptyList());
+
+            reloadConfig();
+            this.locale = new Locale(locale.getLanguageCode());
+        } catch (IOException e) {
+            Logger.error("Error while updating resources");
+        }
+
         Logger.info("Selected locale is: " + locale.getLanguageCode());
 
-        Logger.info("Loading MySQL database");
-
         try {
-            this.userDao = new EconomyUserDao();
+            if (getConfig().getBoolean("mysql.enabled") &&
+                    getConfig().getString("mysql.url").isEmpty()) {
+                Logger.error("Database URL can't be empty! Please check your config");
+            }
+
+            Logger.info("Loading " + MysqlDataSource.getType() + " database");
+
+            this.userDao = new EconomyUserDao(MysqlDataSource.getType());
         } catch (SQLException e) {
-            throw new RuntimeException("Error while enabling mysql");
+            throw new RuntimeException("Error while enabling database connection");
         }
 
         Logger.info("Registering events");
@@ -174,6 +197,18 @@ public class ShiroEconomy extends JavaPlugin implements ShiroEconomyApi {
         new Metrics(this, 22129);
 
         Logger.info("Plugin was successfully loaded (took " + (System.currentTimeMillis() - timeStart) + " ms)");
+
+        Logger.info("§aChecking for updates...");
+
+        Updater.isLatestVersion(this.getDescription().getVersion())
+                .thenAcceptAsync(result -> {
+                    if (result) {
+                        Logger.info("§aNo updates found");
+                    } else {
+                        Logger.info("§aNew version found! Please download it here: https://github.com/desngr/ShiroEconomy");
+                        Logger.info("§eCurrent version: " + this.getDescription().getVersion());
+                    }
+                });
     }
 
     @Override
@@ -183,10 +218,6 @@ public class ShiroEconomy extends JavaPlugin implements ShiroEconomyApi {
         PlayerJoinEvent.getHandlerList().unregister(this);
         PlayerTransactionEvent.getHandlerList().unregister(this);
         BalanceUpdateEvent.getHandlerList().unregister(this);
-
-        Logger.info("Shutting down all connections...");
-
-        MysqlDataSource.getDataSource().close();
 
         Logger.info("See ya!");
     }
@@ -231,7 +262,17 @@ public class ShiroEconomy extends JavaPlugin implements ShiroEconomyApi {
         setupHolograms();
         reloadConfig();
 
-        this.locale = new Locale(getConfig().getString("locale"));
+        if (getConfig().getString("locale").isEmpty()) {
+            if (Locale.exists(Locale.defaultCode())) {
+                this.locale = new Locale(Locale.defaultCode());
+            } else if (Locale.exists(System.getProperty("user.language"))) {
+                this.locale = new Locale(System.getProperty("user.language"));
+            } else {
+                this.locale = new Locale("en");
+            }
+        } else {
+            this.locale = new Locale(getConfig().getString("locale"));
+        }
 
         Logger.info("Plugin was successfully reloaded");
 

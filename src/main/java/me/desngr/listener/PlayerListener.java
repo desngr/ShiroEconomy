@@ -20,6 +20,10 @@ public class PlayerListener implements Listener {
     public void onBalanceUpdate(BalanceUpdateEvent event) {
         Logger.debug("Triggered balance update (" + event.getPlayer().getName() + ")");
 
+        if (!ShiroEconomy.getApi().isHologramEnabled()) {
+            return;
+        }
+
         EconomyUtil.updateAllEconomyHolotops();
     }
 

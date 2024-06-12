@@ -73,7 +73,7 @@ money:
     add: '&eUse: /money add “nickname” “amount”'
     set: '&eUse: /money set “nickname” “amount”'
     take: '&eUse: /money take “nickname” “amount”'
-    reset: '&eUse: /money reset “nickname” “amount”'
+    reset: '&eUse: /money reset “nickname”'
 
 eco:
   reload: "&aPlugin was successfully reloaded!"

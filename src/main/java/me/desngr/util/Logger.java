@@ -16,7 +16,7 @@ public class Logger {
     }
 
     public void error(String message) {
-        Bukkit.getLogger().warning(Locale.format(message));
+        Bukkit.getLogger().info(Locale.format("&c[ERROR] " + message));
     }
 
     public void debug(String message) {

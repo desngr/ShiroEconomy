@@ -1,7 +1,9 @@
 debug: false
 locale: "" # Example: "en" - English
 
-database:
+# By default plugin is using SQLite database
+mysql:
+  enabled: false
   url: ""
   user: ""
   password: ""

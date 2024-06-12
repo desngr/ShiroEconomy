@@ -3,7 +3,9 @@ package me.desngr.mysql;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.DataSourceConnectionSource;
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.jdbc.db.MysqlDatabaseType;
+import com.j256.ormlite.jdbc.db.SqliteDatabaseType;
 import com.j256.ormlite.table.TableUtils;
 import org.bukkit.Bukkit;
 import me.desngr.ShiroEconomy;
@@ -21,9 +23,11 @@ public class EconomyUserDao {
 
     private final DataSourceConnectionSource source;
 
-    public EconomyUserDao() throws SQLException {
+    public EconomyUserDao(MysqlDataSource.Type sourceType) throws SQLException {
         this.source = new DataSourceConnectionSource(MysqlDataSource.getDataSource(),
-                new MysqlDatabaseType());
+                sourceType == MysqlDataSource.Type.MYSQL ?
+                        new MysqlDatabaseType() :
+                        new SqliteDatabaseType());
 
         TableUtils.createTableIfNotExists(source, EconomyUser.class);
         TableUtils.createTableIfNotExists(source, Transaction.class);

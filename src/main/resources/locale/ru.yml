@@ -73,7 +73,7 @@ money:
     add: '&eИспользуйте: /money add “ник” “сумма”'
     set: '&eИспользуйте: /money set “ник” “сумма”'
     take: '&eИспользуйте: /money take “ник” “сумма”'
-    reset: '&eИспользуйте: /money reset “ник” “сумма”'
+    reset: '&eИспользуйте: /money reset “ник”'
 
 eco:
   reload: "&aПлагин был успешно перезагружен!"
